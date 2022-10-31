@@ -17,7 +17,14 @@ exports.up = function (knex) {
         })
         .createTable("leads", (table) => {
             table.increments("id").primary();
-            table.integer("users_id").unsigned().notNullable().references("id").inTable("users");
+            table
+                .integer("users_id")
+                .unsigned()
+                .notNullable()
+                .references("id")
+                .inTable("users")
+                .onUpdate("CASCADE")
+                .onDelete("CASCADE");
             table.string("his_or_her");
             table.string("first_name").notNullable();
             table.string("last_name").notNullable();

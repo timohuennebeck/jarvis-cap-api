@@ -1,5 +1,7 @@
 const knex = require("knex")(require("../knexfile"));
 
+// for all users
+
 const getUsers = (_req, res) => {
     knex("users")
         .then((data) => {
@@ -17,10 +19,14 @@ const addNewUser = (req, res) => {
         .then((resp) => {
             res.send(`User ${resp} has been created`);
         })
-        .catch(() => {
-            res.status(400).json({ message: `Error creating user ${req.body.name}` });
+        .catch((err) => {
+            res.status(400).json({
+                message: `Error creating user ${req.body.name}: ${err}`,
+            });
         });
 };
+
+// for specific (id) user
 
 const getUserId = (req, res) => {
     knex("users")
@@ -29,8 +35,24 @@ const getUserId = (req, res) => {
             res.json(user);
         })
         .catch((err) => {
-            res.status(400).send(`Error retrieving User ID: ${req.params.id}: ${err}`);
+            res.status(400).send({
+                message: `Error retrieving User ID: ${req.params.id}: ${err}`,
+            });
         });
 };
 
-module.exports = { getUsers, addNewUser, getUserId };
+const deleteUserId = (req, res) => {
+    knex("users")
+        .where({ id: req.params.id })
+        .del()
+        .then(() => {
+            res.sendStatus(204);
+        })
+        .catch((err) => {
+            res.status(400).json({
+                message: `Error deleting user ${req.params.id}: ${err}`,
+            });
+        });
+};
+
+module.exports = { getUsers, addNewUser, getUserId, deleteUserId };
