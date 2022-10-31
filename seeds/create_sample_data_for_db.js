@@ -1,4 +1,3 @@
-// import seed data files, arrays of objects
 const usersData = require("../seed_data/users");
 const leadsData = require("../seed_data/leads");
 

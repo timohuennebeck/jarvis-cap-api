@@ -1,32 +1,40 @@
 exports.up = function (knex) {
     return knex.schema
         .createTable("users", (table) => {
-            table.increments("id");
+            table.increments("id").primary();
             table.string("first_name").notNullable();
-            table.string("last_name");
+            table.string("last_name").notNullable();
+            table.string("desired_position");
             table.string("email").notNullable();
-            table.string("google_url");
+            table.string("street_name").notNullable();
+            table.string("postcode").notNullable();
+            table
+                .string("google_url")
+                .defaultTo(
+                    "https://docs.google.com/document/d/1pg3id6wxlmV65hVNb3uzYMbYVaPki1c8593KcpNIKcw/edit?usp=sharing"
+                );
             table.timestamp("created_at").defaultTo(knex.fn.now());
         })
         .createTable("leads", (table) => {
-            table.increments("id");
-            table.foreign("users_id").references("id").inTable("users");
+            table.increments("id").primary();
+            table.integer("users_id").unsigned().notNullable().references("id").inTable("users");
+            table.string("his_or_her");
             table.string("first_name").notNullable();
-            table.string("last_name");
+            table.string("last_name").notNullable();
             table.string("position");
             table.string("email");
-            table.integer("phone");
+            table.string("phone");
             table.string("image_url");
             table.string("linked_in");
-            table.string("business_name");
+            table.string("business_name").notNullable();
             table.string("street_name");
-            table.integer("postcode");
+            table.string("postcode");
             table.string("icebreaker");
             table.string("paragraph_one");
             table.string("paragraph_two");
             table.string("paragraph_three");
             table.string("call_to_action");
-            table.string("status");
+            table.string("status").defaultTo("In Progress");
             table.timestamp("created_at").defaultTo(knex.fn.now());
         });
 };
