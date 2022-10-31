@@ -13,15 +13,14 @@ const getUsers = (_req, res) => {
 };
 
 const addNewUser = (req, res) => {
-    console.log(req.body);
     knex("users")
         .insert(req.body)
         .then((resp) => {
-            res.send(`User ${resp} has been created`);
+            res.send(`User ${resp} has been created.`);
         })
         .catch((err) => {
             res.status(400).json({
-                message: `Error creating user ${req.body.name}: ${err}`,
+                message: `Error creating User: ${req.body.name}! ${err}`,
             });
         });
 };
@@ -36,7 +35,7 @@ const getUserId = (req, res) => {
         })
         .catch((err) => {
             res.status(400).send({
-                message: `Error retrieving User ID: ${req.params.id}: ${err}`,
+                message: `Error retrieving User: ${req.params.id}! ${err}`,
             });
         });
 };
@@ -50,7 +49,7 @@ const deleteUserId = (req, res) => {
         })
         .catch((err) => {
             res.status(400).json({
-                message: `Error deleting user ${req.params.id}: ${err}`,
+                message: `Error deleting User: ${req.params.id}! ${err}`,
             });
         });
 };

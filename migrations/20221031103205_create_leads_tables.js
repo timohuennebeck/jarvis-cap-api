@@ -24,7 +24,8 @@ exports.up = function (knex) {
                 .references("id")
                 .inTable("users")
                 .onUpdate("CASCADE")
-                .onDelete("CASCADE");
+                .onDelete("CASCADE")
+                .defaultTo(1);
             table.string("his_or_her");
             table.string("first_name").notNullable();
             table.string("last_name").notNullable();

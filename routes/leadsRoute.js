@@ -3,10 +3,7 @@ const router = express.Router();
 
 const leadsController = require("../controllers/leadsController");
 
-router
-    .route("/")
-    .get(leadsController.getLeads)
-    .post(leadsController.addNewLead);
+router.route("/").get(leadsController.getLeads).post(leadsController.addNewLead);
 
 router
     .route("/:id")
