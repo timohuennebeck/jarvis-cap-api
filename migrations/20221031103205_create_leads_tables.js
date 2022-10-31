@@ -32,7 +32,7 @@ exports.up = function (knex) {
             table.string("position");
             table.string("email");
             table.string("phone");
-            table.string("image_url");
+            table.string("image_url").defaultTo("https://imgur.com/a/rX4hfPL");
             table.string("linked_in");
             table.string("business_name").notNullable();
             table.string("street_name");

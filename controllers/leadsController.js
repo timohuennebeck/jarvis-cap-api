@@ -41,13 +41,17 @@ const getLeadId = (req, res) => {
 };
 
 const updateLead = (req, res) => {
+    const { created_at, ...body } = req.body;
+
+    console.log(req.body);
     knex("leads")
         .where({ id: req.params.id })
-        .update(req.body)
+        .update(body)
         .then(() => {
             res.sendStatus(200);
         })
         .catch((err) => {
+            console.log(err);
             res.status(400).json({
                 message: `Error updating Lead: ${req.params.id}! ${err}`,
             });
