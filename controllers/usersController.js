@@ -10,6 +10,18 @@ const getUsers = (_req, res) => {
         });
 };
 
+const addNewUser = (req, res) => {
+    console.log(req.body);
+    knex("users")
+        .insert(req.body)
+        .then((resp) => {
+            res.send(`User ${resp} has been created`);
+        })
+        .catch(() => {
+            res.status(400).json({ message: `Error creating user ${req.body.name}` });
+        });
+};
+
 const getUserId = (req, res) => {
     knex("users")
         .where({ id: req.params.id })
@@ -21,4 +33,4 @@ const getUserId = (req, res) => {
         });
 };
 
-module.exports = { getUsers, getUserId };
+module.exports = { getUsers, addNewUser, getUserId };

@@ -6,8 +6,8 @@ exports.up = function (knex) {
             table.string("last_name").notNullable();
             table.string("desired_position");
             table.string("email").notNullable();
-            table.string("street_name").notNullable();
-            table.string("postcode").notNullable();
+            table.string("street_name");
+            table.string("postcode");
             table
                 .string("google_url")
                 .defaultTo(

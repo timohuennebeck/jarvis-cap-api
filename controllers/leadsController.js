@@ -13,7 +13,8 @@ const getLeads = (_req, res) => {
 };
 
 const addNewLead = (req, res) => {
-    knex("leads").then();
+    knex("leads")
+        .insert(req.body)
 };
 
 // for specific (id) lead
