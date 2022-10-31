@@ -3,7 +3,7 @@ const knex = require("knex")(require("../knexfile"));
 const getUsers = (_req, res) => {
     knex("users")
         .then((data) => {
-            res.status(200).json(data);
+            res.json(data);
         })
         .catch((err) => {
             res.status(400).send(`Error retrieving Users: ${err}`);
@@ -11,8 +11,14 @@ const getUsers = (_req, res) => {
 };
 
 const getUserId = (req, res) => {
-    res.send()
-}
+    knex("users")
+        .where({ id: req.params.id })
+        .then((user) => {
+            res.json(user);
+        })
+        .catch((err) => {
+            res.status(400).send(`Error retrieving User ID: ${req.params.id}: ${err}`);
+        });
+};
 
-
-module.exports = { getUsers, getUserId }
+module.exports = { getUsers, getUserId };

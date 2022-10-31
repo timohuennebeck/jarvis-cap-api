@@ -5,7 +5,7 @@ const knex = require("knex")(require("../knexfile"));
 const getLeads = (_req, res) => {
     knex("leads")
         .then((data) => {
-            res.status(200).json(data);
+            res.json(data);
         })
         .catch((err) => {
             res.status(400).send(`Error retrieving Leads: ${err}`);
@@ -19,7 +19,14 @@ const addNewLead = (req, res) => {
 // for specific (id) lead
 
 const getLeadId = (req, res) => {
-    knex("leads").then();
+    knex("leads")
+        .where({ id: req.params.id })
+        .then((lead) => {
+            res.json(lead);
+        })
+        .catch((err) => {
+            res.status(400).send(`Error retrieving Lead ID: ${err}`);
+        });
 };
 
 const updateLead = (req, res) => {

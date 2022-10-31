@@ -17,10 +17,6 @@ app.use("/users", usersRoutes);
 const leadsRoutes = require("./routes/leadsRoute");
 app.use("/leads", leadsRoutes);
 
-// review routes
-const reviewRoutes = require("./routes/reviewsRoute");
-app.use("/review", reviewRoutes);
-
 app.listen(PORT, () => {
     console.log(`Express listening on ${PORT}`);
 });
