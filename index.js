@@ -9,6 +9,10 @@ const PORT = process.env.PORT ?? 4040;
 app.use(cors());
 app.use(express.json());
 
+// users routes
+const usersRoutes = require("./routes/users");
+app.use("/users", usersRoutes);
+
 // leads routes
 const leadsRoutes = require("./routes/leads");
 app.use("/leads", leadsRoutes);
