@@ -10,15 +10,15 @@ app.use(cors());
 app.use(express.json());
 
 // users routes
-const usersRoutes = require("./routes/users");
+const usersRoutes = require("./routes/usersRoute");
 app.use("/users", usersRoutes);
 
 // leads routes
-const leadsRoutes = require("./routes/leads");
+const leadsRoutes = require("./routes/leadsRoute");
 app.use("/leads", leadsRoutes);
 
 // review routes
-const reviewRoutes = require("./routes/review");
+const reviewRoutes = require("./routes/reviewsRoute");
 app.use("/review", reviewRoutes);
 
 app.listen(PORT, () => {

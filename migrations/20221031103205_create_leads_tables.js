@@ -10,7 +10,7 @@ exports.up = function (knex) {
         })
         .createTable("leads", (table) => {
             table.increments("id");
-            table.integer("users_id").unsigned().references("id").inTable("users");
+            table.foreign("users_id").references("id").inTable("users");
             table.string("first_name").notNullable();
             table.string("last_name");
             table.string("position");
