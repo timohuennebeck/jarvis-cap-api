@@ -20,7 +20,7 @@ const addNewLead = (req, res) => {
         })
         .catch((err) => {
             res.status(400).json({
-                message: `Error creating User: ${req.body.name}! ${err}`,
+                message: `Error creating Lead: ${req.body.name}! ${err}`,
             });
         });
 };
@@ -49,7 +49,7 @@ const updateLead = (req, res) => {
         })
         .catch((err) => {
             res.status(400).json({
-                message: `Error updating User: ${req.params.id}! ${err}`,
+                message: `Error updating Lead: ${req.params.id}! ${err}`,
             });
         });
 };
@@ -62,8 +62,10 @@ const deleteLead = (req, res) => {
             res.sendStatus(204);
         })
         .catch((err) => {
-            message: `Error deleting User: ${req.params.id}! ${err}`;
+            res.status(400).json({
+                message: `Error deleting Lead: ${req.params.id}! ${err}`,
+            });
         });
 };
 
-module.exports = { getLeads, getLeadId, addNewLead, updateLead, deleteLead };
+module.exports = { getLeads, addNewLead, getLeadId, updateLead, deleteLead };

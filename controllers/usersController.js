@@ -40,7 +40,21 @@ const getUserId = (req, res) => {
         });
 };
 
-const deleteUserId = (req, res) => {
+const updateUser = (req, res) => {
+    knex("users")
+        .where({ id: req.params.id })
+        .update(req.body)
+        .then(() => {
+            res.sendStatus(200);
+        })
+        .catch((err) => {
+            res.status(400).json({
+                message: `Error updating User: ${req.params.id}! ${err}`,
+            });
+        });
+};
+
+const deleteUser = (req, res) => {
     knex("users")
         .where({ id: req.params.id })
         .del()
@@ -54,4 +68,4 @@ const deleteUserId = (req, res) => {
         });
 };
 
-module.exports = { getUsers, addNewUser, getUserId, deleteUserId };
+module.exports = { getUsers, addNewUser, getUserId, updateUser, deleteUser };
