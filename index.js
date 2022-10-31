@@ -13,10 +13,6 @@ app.use(express.json());
 const leadsRoutes = require("./routes/leads");
 app.use("/leads", leadsRoutes);
 
-// template routes
-const templatesRoutes = require("./routes/templates");
-app.use("/templates", templatesRoutes);
-
 // review routes
 const reviewRoutes = require("./routes/review");
 app.use("/review", reviewRoutes);
