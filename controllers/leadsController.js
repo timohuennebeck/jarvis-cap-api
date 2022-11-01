@@ -1,6 +1,6 @@
 const knex = require("knex")(require("../knexfile"));
 
-// for all leads
+// route "/"
 
 const getLeads = (_req, res) => {
     knex("leads")
@@ -25,7 +25,7 @@ const addNewLead = (req, res) => {
         });
 };
 
-// for specific (id) lead
+// // route "/:id"
 
 const getLeadId = (req, res) => {
     knex("leads")
@@ -70,5 +70,6 @@ const deleteLead = (req, res) => {
             });
         });
 };
+
 
 module.exports = { getLeads, addNewLead, getLeadId, updateLead, deleteLead };
