@@ -41,9 +41,11 @@ const getUserId = (req, res) => {
 };
 
 const updateUser = (req, res) => {
+    const { created_at, ...body } = req.body;
+
     knex("users")
         .where({ id: req.params.id })
-        .update(req.body)
+        .update(body)
         .then(() => {
             res.sendStatus(200);
         })

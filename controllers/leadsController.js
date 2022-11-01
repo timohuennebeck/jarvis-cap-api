@@ -43,7 +43,6 @@ const getLeadId = (req, res) => {
 const updateLead = (req, res) => {
     const { created_at, ...body } = req.body;
 
-    console.log(req.body);
     knex("leads")
         .where({ id: req.params.id })
         .update(body)
