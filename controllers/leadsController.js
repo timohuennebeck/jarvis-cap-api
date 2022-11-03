@@ -19,7 +19,6 @@ const addNewLead = (req, res) => {
             res.send(`Lead ${resp} has been created.`);
         })
         .catch((err) => {
-            console.log(err);
             res.status(400).json({
                 message: `Error creating Lead: ${req.body.name}! ${err}`,
             });
@@ -51,7 +50,6 @@ const updateLead = (req, res) => {
             res.sendStatus(200);
         })
         .catch((err) => {
-            console.log(err);
             res.status(400).json({
                 message: `Error updating Lead: ${req.params.id}! ${err}`,
             });

@@ -32,7 +32,7 @@ exports.up = function (knex) {
             table.string("position");
             table.string("email");
             table.string("phone");
-            table.string("image_url").defaultTo("https://imgur.com/a/rX4hfPL");
+            table.string("image_url").defaultTo("https://i.imgur.com/IryY30I.jpg");
             table.string("linked_in");
             table.string("business_name").notNullable();
             table.string("street_name");
@@ -42,7 +42,7 @@ exports.up = function (knex) {
             table.text("paragraph_two");
             table.text("paragraph_three");
             table.text("call_to_action");
-            table.string("status").defaultTo("In Progress");
+            table.string("status");
             table.timestamp("created_at").defaultTo(knex.fn.now());
         });
 };
