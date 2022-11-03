@@ -37,16 +37,16 @@ exports.up = function (knex) {
             table.string("business_name").notNullable();
             table.string("street_name");
             table.string("postcode");
-            table.string("icebreaker");
-            table.string("paragraph_one");
-            table.string("paragraph_two");
-            table.string("paragraph_three");
-            table.string("call_to_action");
+            table.text("icebreaker");
+            table.text("paragraph_one");
+            table.text("paragraph_two");
+            table.text("paragraph_three");
+            table.text("call_to_action");
             table.string("status").defaultTo("In Progress");
             table.timestamp("created_at").defaultTo(knex.fn.now());
         });
 };
 
 exports.down = function (knex) {
-    return knex.schema.dropTable("users").dropTable("leads");
+    return knex.schema.dropTable("leads").dropTable("users");
 };
