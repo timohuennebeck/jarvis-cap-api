@@ -13,8 +13,12 @@ router
     .get(leadsController.getLeadsInProgress)
 
 router
-    .route("/cl-finished")
-    .get(leadsController.getLeadsClFinished)
+    .route("/cl-approved")
+    .get(leadsController.getLeadsClApproved)
+
+router
+    .route("/cl-declined")
+    .get(leadsController.getLeadsClDeclined)
 
 router
     .route("/awaiting-response")

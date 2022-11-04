@@ -70,7 +70,7 @@ const deleteLead = (req, res) => {
         });
 };
 
-// progress leads
+// status of leads
 
 const getLeadsInProgress = (_req, res) => {
     knex("leads")
@@ -83,9 +83,20 @@ const getLeadsInProgress = (_req, res) => {
         });
 };
 
-const getLeadsClFinished = (_req, res) => {
+const getLeadsClApproved = (_req, res) => {
     knex("leads")
-        .where({ status: "CL Finished" })
+        .where({ status: "CL Approved" })
+        .then((data) => {
+            res.json(data);
+        })
+        .catch((err) => {
+            res.status(400).send(`Error retrieving Leads: ${err}`);
+        });
+};
+
+const getLeadsClDeclined = (_req, res) => {
+    knex("leads")
+        .where({ status: "CL Declined" })
         .then((data) => {
             res.json(data);
         })
@@ -145,7 +156,8 @@ module.exports = {
     updateLead,
     deleteLead,
     getLeadsInProgress,
-    getLeadsClFinished,
+    getLeadsClApproved,
+    getLeadsClDeclined,
     getLeadsAwaitingResponse,
     getLeadsInterviewScheduled,
     getLeadsAccepted,
