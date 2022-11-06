@@ -6,8 +6,12 @@ exports.up = function (knex) {
             table.string("last_name").notNullable();
             table.string("desired_position");
             table.string("email").notNullable();
+            table.string("image_url");
             table.string("street_name");
+            table.string("city");
             table.string("postcode");
+            table.string("state");
+            table.string("country");
             table
                 .string("google_url")
                 .defaultTo(
@@ -34,15 +38,19 @@ exports.up = function (knex) {
             table.string("phone");
             table.string("image_url").defaultTo("https://i.imgur.com/IryY30I.jpg");
             table.string("linked_in");
-            table.string("business_name").notNullable();
+            table.string("company").notNullable();
             table.string("street_name");
+            table.string("city");
+            table.string("state");
             table.string("postcode");
+            table.string("country");
             table.text("icebreaker");
             table.text("paragraph_one");
             table.text("paragraph_two");
             table.text("paragraph_three");
             table.text("call_to_action");
-            table.string("status");
+            table.string("status").defaultTo("In Progress");
+            table.timestamp("updated_at").defaultTo(knex.fn.now());
             table.timestamp("created_at").defaultTo(knex.fn.now());
         });
 };

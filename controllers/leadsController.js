@@ -19,6 +19,7 @@ const addNewLead = (req, res) => {
             res.send(`Lead ${resp} has been created.`);
         })
         .catch((err) => {
+            console.log(err)
             res.status(400).json({
                 message: `Error creating Lead: ${req.body.name}! ${err}`,
             });
@@ -45,7 +46,7 @@ const updateLead = (req, res) => {
 
     knex("leads")
         .where({ id: req.params.id })
-        .update(body)
+        .update({ ...body, updated_at: knex.fn.now() })
         .then(() => {
             res.sendStatus(200);
         })
