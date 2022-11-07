@@ -6,7 +6,7 @@ const leadsController = require("../controllers/leadsController");
 router
     .route("/")
     .get(leadsController.getLeads)
-    .post(leadsController.addNewLead);
+    .post(leadsController.addNewLead)
 
 router
     .route("/in-progress")

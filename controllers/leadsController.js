@@ -19,7 +19,7 @@ const addNewLead = (req, res) => {
             res.send(`Lead ${resp} has been created.`);
         })
         .catch((err) => {
-            console.log(err)
+            console.log(err);
             res.status(400).json({
                 message: `Error creating Lead: ${req.body.name}! ${err}`,
             });

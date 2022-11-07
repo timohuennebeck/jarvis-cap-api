@@ -11,7 +11,7 @@ module.exports = [
         postcode: "3000",
         state: "VIC",
         country: "Australia",
-        google_url: "https://fakeurl.com",
+        google_url: "https://docs.google.com/document/d/1pg3id6wxlmV65hVNb3uzYMbYVaPki1c8593KcpNIKcw",
     },
     {
         id: 2,
