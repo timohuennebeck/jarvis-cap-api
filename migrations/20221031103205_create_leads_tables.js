@@ -17,6 +17,8 @@ exports.up = function (knex) {
                 .defaultTo(
                     "https://docs.google.com/document/d/1pg3id6wxlmV65hVNb3uzYMbYVaPki1c8593KcpNIKcw/edit?usp=sharing"
                 );
+            table.string("status").defaultTo("In Progress");
+            table.timestamp("updated_at").defaultTo(knex.fn.now());
             table.timestamp("created_at").defaultTo(knex.fn.now());
         })
         .createTable("leads", (table) => {
