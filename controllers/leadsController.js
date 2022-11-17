@@ -71,96 +71,10 @@ const deleteLead = (req, res) => {
         });
 };
 
-// status of leads
-
-const getLeadsInProgress = (_req, res) => {
-    knex("leads")
-        .where({ status: "In Progress" })
-        .then((data) => {
-            res.json(data);
-        })
-        .catch((err) => {
-            res.status(400).send(`Error retrieving Leads: ${err}`);
-        });
-};
-
-const getLeadsClApproved = (_req, res) => {
-    knex("leads")
-        .where({ status: "CL Approved" })
-        .then((data) => {
-            res.json(data);
-        })
-        .catch((err) => {
-            res.status(400).send(`Error retrieving Leads: ${err}`);
-        });
-};
-
-const getLeadsClDeclined = (_req, res) => {
-    knex("leads")
-        .where({ status: "CL Declined" })
-        .then((data) => {
-            res.json(data);
-        })
-        .catch((err) => {
-            res.status(400).send(`Error retrieving Leads: ${err}`);
-        });
-};
-
-const getLeadsAwaitingResponse = (_req, res) => {
-    knex("leads")
-        .where({ status: "Awaiting Response" })
-        .then((data) => {
-            res.json(data);
-        })
-        .catch((err) => {
-            res.status(400).send(`Error retrieving Leads: ${err}`);
-        });
-};
-
-const getLeadsInterviewScheduled = (_req, res) => {
-    knex("leads")
-        .where({ status: "Interview Scheduled" })
-        .then((data) => {
-            res.json(data);
-        })
-        .catch((err) => {
-            res.status(400).send(`Error retrieving Leads: ${err}`);
-        });
-};
-
-const getLeadsAccepted = (_req, res) => {
-    knex("leads")
-        .where({ status: "Accepted" })
-        .then((data) => {
-            res.json(data);
-        })
-        .catch((err) => {
-            res.status(400).send(`Error retrieving Leads: ${err}`);
-        });
-};
-
-const getLeadsRejected = (_req, res) => {
-    knex("leads")
-        .where({ status: "Rejected" })
-        .then((data) => {
-            res.json(data);
-        })
-        .catch((err) => {
-            res.status(400).send(`Error retrieving Leads: ${err}`);
-        });
-};
-
 module.exports = {
     getLeads,
     addNewLead,
     getLeadId,
     updateLead,
     deleteLead,
-    getLeadsInProgress,
-    getLeadsClApproved,
-    getLeadsClDeclined,
-    getLeadsAwaitingResponse,
-    getLeadsInterviewScheduled,
-    getLeadsAccepted,
-    getLeadsRejected,
 };
