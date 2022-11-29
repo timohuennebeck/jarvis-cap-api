@@ -4,6 +4,8 @@ exports.up = function (knex) {
             table.increments("id").primary();
             table.string("first_name").notNullable();
             table.string("last_name").notNullable();
+            table.string("nickname");
+            table.string("password").notNullable();
             table.string("desired_position");
             table.string("email").notNullable();
             table.string("image_url");
