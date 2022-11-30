@@ -21,6 +21,10 @@ app.use("/users", usersRoutes);
 const leadsRoutes = require("./routes/leadsRoute");
 app.use("/leads", leadsRoutes);
 
+// faqs routes
+const faqsRoutes = require("./routes/faqsRoute");
+app.use("/faqs", faqsRoutes);
+
 app.listen(PORT, () => {
     console.log(`Express listening on ${PORT}`);
 });

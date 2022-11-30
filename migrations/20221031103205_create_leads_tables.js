@@ -56,9 +56,16 @@ exports.up = function (knex) {
             table.string("status").defaultTo("In Progress");
             table.timestamp("updated_at").defaultTo(knex.fn.now());
             table.timestamp("created_at").defaultTo(knex.fn.now());
+        })
+        .createTable("faqs", (table) => {
+            table.increments("id").primary();
+            table.text("question");
+            table.text("answer");
+            table.timestamp("updated_at").defaultTo(knex.fn.now());
+            table.timestamp("created_at").defaultTo(knex.fn.now());
         });
 };
 
 exports.down = function (knex) {
-    return knex.schema.dropTable("leads").dropTable("users");
+    return knex.schema.dropTable("faqs").dropTable("leads").dropTable("users");
 };
