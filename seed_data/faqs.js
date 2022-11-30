@@ -11,8 +11,8 @@ module.exports = [
     },
     {
         id: 3,
-        question: "Is there a limit for how many contact or companies I can import?",
-        answer: "No, there is no limit! You can import as many contacts and companies as you like but we suggest to keep your number below 500 to stay organized.",
+        question: "Is there a limit for how many contacts or companies I can import?",
+        answer: "No, there is no limit! You can import as many contacts and companies as you like but we suggest to keep your number below 100 to stay organized.",
     },
     {
         id: 4,
