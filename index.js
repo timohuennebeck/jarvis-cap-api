@@ -1,4 +1,3 @@
-import sslRedirect from "heroku-ssl-redirect";
 const express = require("express");
 const cors = require("cors");
 
@@ -9,7 +8,6 @@ const PORT = process.env.PORT ?? 8080;
 
 app.use(cors());
 app.use(express.json());
-app.use(sslRedirect(["development"]));
 
 app.get("/", (_req, res) => {
     res.send("Welcome to the API!");
