@@ -21,6 +21,10 @@ app.use("/users", usersRoutes);
 const leadsRoutes = require("./routes/leadsRoute");
 app.use("/leads", leadsRoutes);
 
+// companies routes
+const companiesRoutes = require("./routes/companiesRoute");
+app.use("/companies", companiesRoutes);
+
 // faqs routes
 const faqsRoutes = require("./routes/faqsRoute");
 app.use("/faqs", faqsRoutes);

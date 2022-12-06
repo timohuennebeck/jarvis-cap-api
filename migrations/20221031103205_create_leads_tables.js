@@ -57,6 +57,29 @@ exports.up = function (knex) {
             table.timestamp("updated_at").defaultTo(knex.fn.now());
             table.timestamp("created_at").defaultTo(knex.fn.now());
         })
+        .createTable("companies", (table) => {
+            table.increments("id").primary();
+            table
+                .integer("users_id")
+                .unsigned()
+                .notNullable()
+                .references("id")
+                .inTable("users")
+                .onUpdate("CASCADE")
+                .onDelete("CASCADE")
+                .defaultTo(1);
+            table.string("name")
+            table.string("location")
+            table.string("position")
+            table.string("posting_url")
+            table.string("resume")
+            table.string("cover_letter")
+            table.string("date_posted")
+            table.string("hours")
+            table.string("status").defaultTo("Preparing");
+            table.timestamp("updated_at").defaultTo(knex.fn.now());
+            table.timestamp("created_at").defaultTo(knex.fn.now());
+        })
         .createTable("faqs", (table) => {
             table.increments("id").primary();
             table.text("question");
@@ -67,5 +90,5 @@ exports.up = function (knex) {
 };
 
 exports.down = function (knex) {
-    return knex.schema.dropTable("faqs").dropTable("leads").dropTable("users");
+    return knex.schema.dropTable("faqs").dropTable("companies").dropTable("leads").dropTable("users");
 };

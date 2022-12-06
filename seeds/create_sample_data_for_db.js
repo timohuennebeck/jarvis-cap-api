@@ -1,5 +1,6 @@
 const usersData = require("../seed_data/users");
 const leadsData = require("../seed_data/leads");
+const companiesData = require("../seed_data/companies");
 const faqsData = require("../seed_data/faqs");
 
 exports.seed = function (knex) {
@@ -13,6 +14,12 @@ exports.seed = function (knex) {
         })
         .then(() => {
             return knex("leads").insert(leadsData);
+        })
+        .then(() => {
+            return knex("companies").del();
+        })
+        .then(() => {
+            return knex("companies").insert(companiesData);
         })
         .then(() => {
             return knex("faqs").del();
