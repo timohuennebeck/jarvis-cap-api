@@ -5,7 +5,7 @@ exports.up = function (knex) {
             table.string("first_name").notNullable();
             table.string("last_name").notNullable();
             table.string("nickname");
-            table.string("password").notNullable();
+            table.string("password");
             table.string("desired_position");
             table.string("email").notNullable();
             table.string("image_url");
@@ -14,12 +14,16 @@ exports.up = function (knex) {
             table.string("postcode");
             table.string("state");
             table.string("country");
+            table.string("target_title").defaultTo("Front End Developer");
+            table.string("target_date").defaultTo("31.12.2022");
+            table.string("target_income").defaultTo("AUSD 70,000");
             table
                 .string("google_url")
                 .defaultTo(
                     "https://docs.google.com/document/d/1pg3id6wxlmV65hVNb3uzYMbYVaPki1c8593KcpNIKcw/edit?usp=sharing"
                 );
             table.string("status").defaultTo("In Progress");
+            table.string("google_sub");
             table.timestamp("updated_at").defaultTo(knex.fn.now());
             table.timestamp("created_at").defaultTo(knex.fn.now());
         })
@@ -32,8 +36,7 @@ exports.up = function (knex) {
                 .references("id")
                 .inTable("users")
                 .onUpdate("CASCADE")
-                .onDelete("CASCADE")
-                .defaultTo(1);
+                .onDelete("CASCADE");
             table.string("his_or_her");
             table.string("first_name").notNullable();
             table.string("last_name").notNullable();
@@ -66,16 +69,15 @@ exports.up = function (knex) {
                 .references("id")
                 .inTable("users")
                 .onUpdate("CASCADE")
-                .onDelete("CASCADE")
-                .defaultTo(1);
-            table.string("name")
-            table.string("location")
-            table.string("position")
-            table.string("posting_url")
-            table.string("resume")
-            table.string("cover_letter")
-            table.string("date_posted")
-            table.string("hours")
+                .onDelete("CASCADE");
+            table.string("name");
+            table.string("location");
+            table.string("position");
+            table.string("posting_url");
+            table.string("resume");
+            table.string("cover_letter");
+            table.string("date_posted");
+            table.string("hours");
             table.string("status").defaultTo("Preparing");
             table.timestamp("updated_at").defaultTo(knex.fn.now());
             table.timestamp("created_at").defaultTo(knex.fn.now());
@@ -90,5 +92,9 @@ exports.up = function (knex) {
 };
 
 exports.down = function (knex) {
-    return knex.schema.dropTable("faqs").dropTable("companies").dropTable("leads").dropTable("users");
+    return knex.schema
+        .dropTable("faqs")
+        .dropTable("companies")
+        .dropTable("leads")
+        .dropTable("users");
 };

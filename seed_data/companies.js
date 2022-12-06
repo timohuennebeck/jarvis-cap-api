@@ -1,5 +1,7 @@
 module.exports = [
     {
+        id: 1,
+        users_id: 1,
         name: "Tesla",
         location: "Los Angeles",
         position: "Full Stack Developer",
@@ -12,6 +14,8 @@ module.exports = [
         hours: "Full-Time",
     },
     {
+        id: 2,
+        users_id: 1,
         name: "Canva",
         location: "Melbourne",
         position: "Full Stack Developer",
@@ -24,6 +28,8 @@ module.exports = [
         hours: "Full-Time",
     },
     {
+        id: 3,
+        users_id: 1,
         name: "Google",
         location: "Brisbane",
         position: "Full Stack Developer",
@@ -36,6 +42,8 @@ module.exports = [
         hours: "Full-Time",
     },
     {
+        id: 4,
+        users_id: 2,
         name: "Microsoft",
         location: "Munich",
         position: "Full Stack Developer",
@@ -48,6 +56,8 @@ module.exports = [
         hours: "Full-Time",
     },
     {
+        id: 5,
+        users_id: 2,
         name: "Apple",
         location: "San Francisco",
         position: "Full Stack Developer",

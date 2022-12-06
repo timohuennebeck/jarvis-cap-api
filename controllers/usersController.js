@@ -19,6 +19,7 @@ const addNewUser = (req, res) => {
             res.send(`User ${resp} has been created.`);
         })
         .catch((err) => {
+            console.log(err);
             res.status(400).json({
                 message: `Error creating User: ${req.body.name}! ${err}`,
             });
@@ -41,10 +42,10 @@ const getUserId = (req, res) => {
 };
 
 const updateUser = (req, res) => {
-    const { created_at, ...body } = req.body;
+    const { created_at, updated_at, ...body } = req.body;
 
     knex("users")
-        .where({ id: req.params.id })
+        .where({ id: req.body.id })
         .update(body)
         .then(() => {
             res.sendStatus(200);
