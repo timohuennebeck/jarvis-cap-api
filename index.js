@@ -17,9 +17,9 @@ app.get("/", (_req, res) => {
 const usersRoutes = require("./routes/usersRoute");
 app.use("/users", usersRoutes);
 
-// leads routes
-const leadsRoutes = require("./routes/leadsRoute");
-app.use("/leads", leadsRoutes);
+// contacts routes
+const contactsRoutes = require("./routes/contactsRoute");
+app.use("/contacts", contactsRoutes);
 
 // companies routes
 const companiesRoutes = require("./routes/companiesRoute");

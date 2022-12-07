@@ -27,7 +27,7 @@ exports.up = function (knex) {
             table.timestamp("updated_at").defaultTo(knex.fn.now());
             table.timestamp("created_at").defaultTo(knex.fn.now());
         })
-        .createTable("leads", (table) => {
+        .createTable("contacts", (table) => {
             table.increments("id").primary();
             table
                 .integer("users_id")
@@ -71,13 +71,12 @@ exports.up = function (knex) {
                 .onUpdate("CASCADE")
                 .onDelete("CASCADE");
             table.string("name");
-            table.string("location");
-            table.string("position");
+            table.string("position_to_fill");
             table.string("posting_url");
-            table.string("resume");
-            table.string("cover_letter");
-            table.string("date_posted");
-            table.string("hours");
+            table.string("location");
+            table.string("postcode");
+            table.string("street_name");
+            table.string("state");
             table.string("status").defaultTo("Preparing");
             table.timestamp("updated_at").defaultTo(knex.fn.now());
             table.timestamp("created_at").defaultTo(knex.fn.now());
@@ -95,6 +94,6 @@ exports.down = function (knex) {
     return knex.schema
         .dropTable("faqs")
         .dropTable("companies")
-        .dropTable("leads")
+        .dropTable("contacts")
         .dropTable("users");
 };

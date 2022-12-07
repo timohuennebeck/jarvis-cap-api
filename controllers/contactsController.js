@@ -2,48 +2,48 @@ const knex = require("knex")(require("../knexfile"));
 
 // route "/"
 
-const getLeads = (_req, res) => {
-    knex("leads")
+const getContacts = (_req, res) => {
+    knex("contacts")
         .then((data) => {
             res.json(data);
         })
         .catch((err) => {
-            res.status(400).send(`Error retrieving Leads: ${err}`);
+            res.status(400).send(`Error retrieving Contacts: ${err}`);
         });
 };
 
-const addNewLead = (req, res) => {
-    knex("leads")
+const addNewContact = (req, res) => {
+    knex("contacts")
         .insert(req.body)
         .then((resp) => {
-            res.send(`Lead ${resp} has been created.`);
+            res.send(`Contact ${resp} has been created.`);
         })
         .catch((err) => {
             res.status(400).json({
-                message: `Error creating Lead: ${req.body.name}! ${err}`,
+                message: `Error creating Contact: ${req.body.name}! ${err}`,
             });
         });
 };
 
 // // route "/:id"
 
-const getLeadId = (req, res) => {
-    knex("leads")
+const getContactId = (req, res) => {
+    knex("contacts")
         .where({ id: req.params.id })
-        .then((lead) => {
-            res.json(lead);
+        .then((contacts) => {
+            res.json(contacts);
         })
         .catch((err) => {
             res.status(400).send({
-                message: `Error retrieving Lead: ${req.params.id}! ${err}`,
+                message: `Error retrieving Contact: ${req.params.id}! ${err}`,
             });
         });
 };
 
-const updateLead = (req, res) => {
+const updateContact = (req, res) => {
     const { created_at, ...body } = req.body;
 
-    knex("leads")
+    knex("contacts")
         .where({ id: req.params.id })
         .update({ ...body, updated_at: knex.fn.now() })
         .then(() => {
@@ -51,13 +51,13 @@ const updateLead = (req, res) => {
         })
         .catch((err) => {
             res.status(400).json({
-                message: `Error updating Lead: ${req.params.id}! ${err}`,
+                message: `Error updating Contact: ${req.params.id}! ${err}`,
             });
         });
 };
 
-const deleteLead = (req, res) => {
-    knex("leads")
+const deleteContact = (req, res) => {
+    knex("contacts")
         .where({ id: req.params.id })
         .del()
         .then(() => {
@@ -65,15 +65,15 @@ const deleteLead = (req, res) => {
         })
         .catch((err) => {
             res.status(400).json({
-                message: `Error deleting Lead: ${req.params.id}! ${err}`,
+                message: `Error deleting Contact: ${req.params.id}! ${err}`,
             });
         });
 };
 
 module.exports = {
-    getLeads,
-    addNewLead,
-    getLeadId,
-    updateLead,
-    deleteLead,
+    getContacts,
+    addNewContact,
+    getContactId,
+    updateContact,
+    deleteContact,
 };
