@@ -37,7 +37,8 @@ exports.up = function (knex) {
                 .inTable("users")
                 .onUpdate("CASCADE")
                 .onDelete("CASCADE");
-            table.string("his_or_her");
+            table.string("relationship").defaultTo("Friend")
+            table.string("target").defaultTo("Networking")
             table.string("first_name").notNullable();
             table.string("last_name").notNullable();
             table.string("position");

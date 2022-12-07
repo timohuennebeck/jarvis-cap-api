@@ -2,7 +2,6 @@ module.exports = [
     {
         id: 1,
         users_id: 1,
-        his_or_her: "Ms.",
         first_name: "Melanie",
         last_name: "Perkins",
         position: "CEO",
@@ -31,7 +30,6 @@ module.exports = [
     {
         id: 2,
         users_id: 1,
-        his_or_her: "Mr.",
         first_name: "Elon",
         last_name: "Musk",
         position: "CEO",
@@ -59,7 +57,6 @@ module.exports = [
     {
         id: 3,
         users_id: 2,
-        his_or_her: "Mr.",
         first_name: "Mark",
         last_name: "Zuckerberg",
         position: "CEO",
@@ -87,7 +84,6 @@ module.exports = [
     {
         id: 4,
         users_id: 1,
-        his_or_her: "Mr.",
         first_name: "Bill",
         last_name: "Gates",
         position: "Founder",
@@ -116,7 +112,6 @@ module.exports = [
     {
         id: 5,
         users_id: 1,
-        his_or_her: "Ms.",
         first_name: "Melissa",
         last_name: "Benoist",
         position: "Producer",
