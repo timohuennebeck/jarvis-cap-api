@@ -71,10 +71,36 @@ const deleteCompany = (req, res) => {
         });
 };
 
+const getThisMonthCompanies = (req, res) => {
+    knex("companies")
+        .where("created_at", ">=", knex.raw("CURDATE() - INTERVAL 30 DAY"))
+        .select("*")
+        .then((data) => {
+            res.json(data);
+        })
+        .catch((err) => {
+            res.status(400).send(`Error retrieving Companies: ${err}`);
+        });
+};
+
+const getLastMonthCompanies = (req, res) => {
+    knex("companies")
+        .where("created_at", "<=", knex.raw("DATE_SUB(CURDATE(), INTERVAL 30 DAY)"))
+        .select("*")
+        .then((data) => {
+            res.json(data);
+        })
+        .catch((err) => {
+            res.status(400).send(`Error retrieving Companies: ${err}`);
+        });
+};
+
 module.exports = {
     getCompanies,
     addNewCompany,
     getCompanyId,
     updateCompany,
     deleteCompany,
+    getThisMonthCompanies,
+    getLastMonthCompanies,
 };

@@ -14,9 +14,9 @@ exports.up = function (knex) {
             table.string("postcode");
             table.string("state");
             table.string("country");
-            table.string("target_title").defaultTo("Front End Developer");
-            table.string("target_date").defaultTo("31.12.2022");
-            table.string("target_income").defaultTo("AUSD 70,000");
+            table.string("target_title");
+            table.string("target_date");
+            table.string("target_income");
             table
                 .string("google_url")
                 .defaultTo(

@@ -70,10 +70,36 @@ const deleteContact = (req, res) => {
         });
 };
 
+const getThisMonthContacts = (req, res) => {
+    knex("contacts")
+        .where("created_at", ">=", knex.raw("CURDATE() - INTERVAL 30 DAY"))
+        .select("*")
+        .then((data) => {
+            res.json(data);
+        })
+        .catch((err) => {
+            res.status(400).send(`Error retrieving Companies: ${err}`);
+        });
+};
+
+const getLastMonthContacts = (req, res) => {
+    knex("contacts")
+        .where("created_at", "<=", knex.raw("DATE_SUB(CURDATE(), INTERVAL 30 DAY)"))
+        .select("*")
+        .then((data) => {
+            res.json(data);
+        })
+        .catch((err) => {
+            res.status(400).send(`Error retrieving Companies: ${err}`);
+        });
+};
+
 module.exports = {
     getContacts,
     addNewContact,
     getContactId,
     updateContact,
     deleteContact,
+    getThisMonthContacts,
+    getLastMonthContacts,
 };
