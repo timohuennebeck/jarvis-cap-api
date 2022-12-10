@@ -27,6 +27,20 @@ exports.up = function (knex) {
             table.timestamp("updated_at").defaultTo(knex.fn.now());
             table.timestamp("created_at").defaultTo(knex.fn.now());
         })
+        .createTable("contactsFunnel", (table) => {
+            table.increments("id").primary();
+            table
+                .integer("users_id")
+                .unsigned()
+                .notNullable()
+                .references("id")
+                .inTable("users")
+                .onUpdate("CASCADE")
+                .onDelete("CASCADE");
+            table.text("status");
+            table.timestamp("updated_at").defaultTo(knex.fn.now());
+            table.timestamp("created_at").defaultTo(knex.fn.now());
+        })
         .createTable("contacts", (table) => {
             table.increments("id").primary();
             table
@@ -37,8 +51,15 @@ exports.up = function (knex) {
                 .inTable("users")
                 .onUpdate("CASCADE")
                 .onDelete("CASCADE");
-            table.string("relationship").defaultTo("Friend")
-            table.string("target").defaultTo("Networking")
+            table
+                .integer("contactsFunnel_id")
+                .unsigned()
+                .references("id")
+                .inTable("contactsFunnel")
+                .onUpdate("CASCADE")
+                .onDelete("CASCADE");
+            table.string("relationship").defaultTo("Friend");
+            table.string("target").defaultTo("Networking");
             table.string("first_name").notNullable();
             table.string("last_name").notNullable();
             table.string("position");
@@ -61,6 +82,20 @@ exports.up = function (knex) {
             table.timestamp("updated_at").defaultTo(knex.fn.now());
             table.timestamp("created_at").defaultTo(knex.fn.now());
         })
+        .createTable("companiesFunnel", (table) => {
+            table.increments("id").primary();
+            table
+                .integer("users_id")
+                .unsigned()
+                .notNullable()
+                .references("id")
+                .inTable("users")
+                .onUpdate("CASCADE")
+                .onDelete("CASCADE");
+            table.text("status");
+            table.timestamp("updated_at").defaultTo(knex.fn.now());
+            table.timestamp("created_at").defaultTo(knex.fn.now());
+        })
         .createTable("companies", (table) => {
             table.increments("id").primary();
             table
@@ -69,6 +104,13 @@ exports.up = function (knex) {
                 .notNullable()
                 .references("id")
                 .inTable("users")
+                .onUpdate("CASCADE")
+                .onDelete("CASCADE");
+            table
+                .integer("companiesFunnel_id")
+                .unsigned()
+                .references("id")
+                .inTable("companiesFunnel")
                 .onUpdate("CASCADE")
                 .onDelete("CASCADE");
             table.string("name");
@@ -94,6 +136,8 @@ exports.up = function (knex) {
 exports.down = function (knex) {
     return knex.schema
         .dropTable("faqs")
+        .dropTable("companiesFunnel")
+        .dropTable("contactsFunnel")
         .dropTable("companies")
         .dropTable("contacts")
         .dropTable("users");

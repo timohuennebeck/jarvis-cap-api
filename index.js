@@ -21,9 +21,17 @@ app.use("/users", usersRoutes);
 const contactsRoutes = require("./routes/contactsRoute");
 app.use("/contacts", contactsRoutes);
 
+// contacts funnel routes
+const contactsFunnelRoutes = require("./routes/contactsFunnelRoute");
+app.use("/contactsFunnel", contactsFunnelRoutes);
+
 // companies routes
 const companiesRoutes = require("./routes/companiesRoute");
 app.use("/companies", companiesRoutes);
+
+// companies funnel routes
+const companiesFunnelRoutes = require("./routes/companiesFunnelRoute");
+app.use("/companiesFunnel", companiesFunnelRoutes);
 
 // faqs routes
 const faqsRoutes = require("./routes/faqsRoute");
