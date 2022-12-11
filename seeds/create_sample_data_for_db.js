@@ -4,6 +4,7 @@ const contactsFunnelData = require("../seed_data/contactsFunnel");
 const companiesData = require("../seed_data/companies");
 const companiesFunnelData = require("../seed_data/companiesFunnel");
 const faqsData = require("../seed_data/faqs");
+const todosData = require("../seed_data/todos");
 
 exports.seed = function (knex) {
     return knex("users")
@@ -40,5 +41,11 @@ exports.seed = function (knex) {
         })
         .then(() => {
             return knex("faqs").insert(faqsData);
+        })
+        .then(() => {
+            return knex("todos").del();
+        })
+        .then(() => {
+            return knex("todos").insert(todosData);
         });
 };

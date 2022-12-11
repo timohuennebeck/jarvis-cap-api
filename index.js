@@ -37,6 +37,10 @@ app.use("/companiesFunnel", companiesFunnelRoutes);
 const faqsRoutes = require("./routes/faqsRoute");
 app.use("/faqs", faqsRoutes);
 
+// faqs routes
+const todosRoutes = require("./routes/todosRoute");
+app.use("/todos", todosRoutes);
+
 app.listen(PORT, () => {
     console.log(`Express listening on ${PORT}`);
 });

@@ -51,33 +51,13 @@ exports.up = function (knex) {
                 .inTable("users")
                 .onUpdate("CASCADE")
                 .onDelete("CASCADE");
-            table
-                .integer("contactsFunnel_id")
-                .unsigned()
-                .references("id")
-                .inTable("contactsFunnel")
-                .onUpdate("CASCADE")
-                .onDelete("CASCADE");
-            table.string("relationship").defaultTo("Friend");
-            table.string("target").defaultTo("Networking");
             table.string("first_name").notNullable();
             table.string("last_name").notNullable();
             table.string("position");
             table.string("email");
             table.string("phone");
             table.string("image_url").defaultTo("https://i.imgur.com/IryY30I.jpg");
-            table.string("linked_in");
-            table.string("company").notNullable();
-            table.string("street_name");
-            table.string("city");
-            table.string("state");
-            table.string("postcode");
-            table.string("country");
-            table.text("icebreaker");
-            table.text("paragraph_one");
-            table.text("paragraph_two");
-            table.text("paragraph_three");
-            table.text("call_to_action");
+            table.string("linked_in_url");
             table.string("status").defaultTo("In Progress");
             table.timestamp("updated_at").defaultTo(knex.fn.now());
             table.timestamp("created_at").defaultTo(knex.fn.now());
@@ -106,13 +86,6 @@ exports.up = function (knex) {
                 .inTable("users")
                 .onUpdate("CASCADE")
                 .onDelete("CASCADE");
-            table
-                .integer("companiesFunnel_id")
-                .unsigned()
-                .references("id")
-                .inTable("companiesFunnel")
-                .onUpdate("CASCADE")
-                .onDelete("CASCADE");
             table.string("name");
             table.string("position_to_fill");
             table.string("posting_url");
@@ -121,6 +94,20 @@ exports.up = function (knex) {
             table.string("street_name");
             table.string("state");
             table.string("status").defaultTo("Preparing");
+            table.timestamp("updated_at").defaultTo(knex.fn.now());
+            table.timestamp("created_at").defaultTo(knex.fn.now());
+        })
+        .createTable("todos", (table) => {
+            table.increments("id").primary();
+            table
+                .integer("users_id")
+                .unsigned()
+                .notNullable()
+                .references("id")
+                .inTable("users")
+                .onUpdate("CASCADE")
+                .onDelete("CASCADE");
+            table.text("name");
             table.timestamp("updated_at").defaultTo(knex.fn.now());
             table.timestamp("created_at").defaultTo(knex.fn.now());
         })
@@ -136,6 +123,7 @@ exports.up = function (knex) {
 exports.down = function (knex) {
     return knex.schema
         .dropTable("faqs")
+        .dropTable("todos")
         .dropTable("companiesFunnel")
         .dropTable("contactsFunnel")
         .dropTable("companies")
